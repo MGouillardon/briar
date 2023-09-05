@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Property;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PropertyController extends Controller
 {
@@ -12,7 +13,14 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        //
+        return inertia(
+
+            'Admin/Property/Index',
+            [
+                'properties' => Property::orderBy('created_at', 'desc')->paginate(10),
+            ],
+
+        );
     }
 
     /**

@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\PropertyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,9 @@ Route::get('/', function () {
     ]);
 });
 
+Route::prefix('admin')->name('admin.')->group( function () {
+    Route::resource('property', PropertyController::class);
+});
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -1,4 +1,6 @@
 <script setup>
+import Pagination from '@/Components/UI/Pagination.vue';
+
 defineProps({
     properties: Object,
 });
@@ -26,4 +28,5 @@ defineProps({
             </tr>
         </tbody>
     </table>
+    <Pagination :links="properties.links" />
 </template>

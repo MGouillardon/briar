@@ -13,8 +13,9 @@ class PropertyController extends Controller
      */
     public function index()
     {
+        // dd(Property::orderBy('created_at', 'desc')->paginate(10));
+        // dd(Property::all());
         return inertia(
-
             'Admin/Property/Index',
             [
                 'properties' => Property::orderBy('created_at', 'desc')->paginate(10),

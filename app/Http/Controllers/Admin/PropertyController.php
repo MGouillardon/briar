@@ -56,7 +56,12 @@ class PropertyController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return inertia(
+            'Admin/Property/Edit',
+            [
+                'property' => Property::findOrFail($id),
+            ],
+        );
     }
 
     /**

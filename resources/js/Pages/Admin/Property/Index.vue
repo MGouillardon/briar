@@ -5,6 +5,15 @@ import Pagination from "@/Components/UI/Pagination.vue";
 defineProps({
     properties: Object,
 });
+
+const formatPrice = (price) => {
+    return new Intl.NumberFormat("fr-FR", {
+        style: "currency",
+        currency: "EUR",
+        maximumFractionDigits: 0,
+        minimumFractionDigits: 0,
+    }).format(price);
+};
 </script>
 
 <template>
@@ -44,12 +53,18 @@ defineProps({
                         {{ property.title }}
                     </td>
                     <td class="px-6 py-4">{{ property.area }}m²</td>
-                    <td class="px-6 py-4">{{ property.price }}€</td>
+                    <td class="px-6 py-4">
+                        {{ formatPrice(property.price) }}
+                    </td>
                     <td class="px-6 py-4">{{ property.city }}</td>
                     <td class="px-6 py-4">
                         <Link
                             class="py-2 px-4 rounded-md bg-blue-500 text-gray-500 dark:bg-blue-700 dark:text-white hover:bg-blue-600 dark:hover:bg-blue-800"
-                            :href="route('admin.property.edit' , { property: property.id })"
+                            :href="
+                                route('admin.property.edit', {
+                                    property: property.id,
+                                })
+                            "
                             >Edit</Link
                         >
                     </td>

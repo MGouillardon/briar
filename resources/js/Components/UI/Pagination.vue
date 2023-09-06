@@ -5,7 +5,7 @@ defineProps({ links: Array });
 </script>
 
 <template>
-    <div class="flex gap-1 absolute bottom-8">
+    <div class="flex gap-1 absolute left-1/2 transform -translate-x-1/2 bottom-8">
         <Link
             v-for="(link, index) in links"
             :key="index"

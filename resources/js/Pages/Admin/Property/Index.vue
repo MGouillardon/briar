@@ -1,4 +1,5 @@
 <script setup>
+import { Link } from "@inertiajs/vue3";
 import Pagination from "@/Components/UI/Pagination.vue";
 
 defineProps({
@@ -7,10 +8,17 @@ defineProps({
 </script>
 
 <template>
-    <h1 class="text-3xl text-center my-4">Les biens</h1>
-    <div class="relative overflow-x-auto">
+    <h1 class="text-3xl text-center my-10">Les biens</h1>
+    <div class="relative flex flex-col items-center">
+        <div class="w-full flex justify-end">
+            <Link
+                class="py-2 px-4 rounded-md bg-blue-500 text-gray-500 dark:bg-blue-700 dark:text-white hover:bg-blue-600 dark:hover:bg-blue-800"
+                :href="route('admin.property.create')"
+                >Ajouter un bien</Link
+            >
+        </div>
         <table
-            class="w-full table-fixed my-10 text-md text-center text-gray-500 dark:text-gray-40 rounded-md overflow-hidden shadow-md"
+            class="w-full table-fixed my-4 text-md text-center text-gray-500 dark:text-gray-40 rounded-md overflow-hidden shadow-md"
         >
             <thead
                 class="text-md text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"

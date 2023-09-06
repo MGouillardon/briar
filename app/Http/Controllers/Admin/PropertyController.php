@@ -13,8 +13,6 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        // dd(Property::orderBy('created_at', 'desc')->paginate(10));
-        // dd(Property::all());
         return inertia(
             'Admin/Property/Index',
             [
@@ -29,7 +27,12 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        //
+        return inertia(
+            'Admin/Property/Create',
+            [
+                'property' => new Property(),
+            ],
+        );
     }
 
     /**

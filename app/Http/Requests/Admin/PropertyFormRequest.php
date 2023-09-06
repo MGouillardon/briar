@@ -22,7 +22,7 @@ class PropertyFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:8',
+            'title' => 'required|string|max:20',
             'description' => 'required|string|min:8|max:255',
             'area' => 'required|integer|min:20|max:2000',
             'rooms' => 'required|integer|min:1|max:10',

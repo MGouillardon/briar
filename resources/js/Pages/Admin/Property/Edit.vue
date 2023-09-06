@@ -22,14 +22,12 @@ const form = useForm({
 
 const update = () => {
     form.put(route('admin.property.update', {property: props.property.id}))
-    // console.log(form);
 };
 </script>
 
 <template>
-    <div class="h-full w-full flex items-center justify-center">
+    <div class="pt-12">
         <form @submit.prevent="update">
-            {{ props }}
             <div class="grid grid-cols-12 gap-4">
                 <div class="col-span-4">
                     <label class="label" for="title">Titre</label>

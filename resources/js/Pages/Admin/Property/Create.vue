@@ -17,11 +17,56 @@ const form = useForm({
     sold: false,
 })
 
+const formFields = [
+    { name: 'title', label: 'Titre', type: 'text' },
+    { name: 'area', label: 'Surface', type: 'number' },
+    { name: 'price', label: 'Prix', type: 'number' },
+    { name: 'description', label: 'Description', type: 'text' },
+    { name: 'rooms', label: 'Pièces', type: 'number' },
+    { name: 'bedrooms', label: 'Chambres', type: 'number' },
+    { name: 'floor', label: 'Etage', type: 'number' },
+    { name: 'city', label: 'Ville', type: 'text' },
+    { name: 'address', label: 'Adresse', type: 'text' },
+    { name: 'zip_code', label: 'Code postal', type: 'text' },
+    // { name: 'sold', label: 'Vendu', type: 'checkbox' },  
+];
+
 const create = () => {
     form.post(route('admin.property.store'))
 }
 </script>
+
 <template>
+    <div class="pt-12">
+        <form @submit.prevent="create">
+            <div class="grid grid-cols-12 gap-4">
+                <div v-for="field in formFields" :key="field.name" :class="field.name === 'description' ? 'col-span-12' : 'col-span-4'">
+                    <label :class="label" :for="field.name">{{ field.label }}</label>
+                    <textarea v-if="field.name === 'description'"
+                        v-model="form.description"
+                        type="text"
+                        class="input resize-none"
+                    >
+                    </textarea>
+                    <input v-else
+                        v-model="form[field.name]"
+                        :type="field.type"
+                        class="input"
+                    />
+                    <ErrorMessage
+                        v-if="form.errors[field.name]"
+                        :error="form.errors[field.name]"
+                    />
+                </div>
+                <div class="col-span-12">
+                    <button type="submit" class="btn-primary">Créer</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</template>
+
+<!-- <template>
     <div class="pt-12">
         <form @submit.prevent="create">
             <div class="grid grid-cols-12 gap-4">
@@ -121,4 +166,4 @@ const create = () => {
             </div>
         </form>
     </div>
-</template>
+</template> -->

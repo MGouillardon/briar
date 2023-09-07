@@ -1,6 +1,8 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
+import FormFields from "./Components/FormFields.vue";
 import ErrorMessage from "@/Components/ErrorMessage.vue";
+
 
 const props = defineProps({
     property: Object,
@@ -17,15 +19,45 @@ const form = useForm({
     city: props.property.city,
     address: props.property.address,
     zip_code: props.property.zip_code,
-    sold: props.property.sold,
+    sold: Boolean(props.property.sold),
 });
+
+const formFields = [
+    { name: "title", label: "Titre", type: "text" },
+    { name: "area", label: "Surface", type: "number" },
+    { name: "price", label: "Prix", type: "number" },
+    { name: "description", label: "Description", type: "text" },
+    { name: "rooms", label: "Pièces", type: "number" },
+    { name: "bedrooms", label: "Chambres", type: "number" },
+    { name: "floor", label: "Etage", type: "number" },
+    { name: "city", label: "Ville", type: "text" },
+    { name: "address", label: "Adresse", type: "text" },
+    { name: "zip_code", label: "Code postal", type: "text" },
+    // { name: 'sold', label: 'Vendu', type: 'checkbox' },
+];
+const isEditForm = true;
 
 const update = () => {
     form.put(route('admin.property.update', {property: props.property.id}))
 };
-</script>
 
+</script>
 <template>
+    <div class="pt-12">
+        <form @submit.prevent="update">
+            <FormFields
+                :formFields="formFields"
+                :formData="form"
+                :form="form"
+                :buttonActionName="buttonActionName"
+                :isEditForm="isEditForm"
+            />
+        </form>
+    </div>
+</template>
+
+<!-- <template>
+    {{ form.sold }}
     <div class="pt-12">
         <form @submit.prevent="update">
             <div class="grid grid-cols-12 gap-4">
@@ -123,15 +155,15 @@ const update = () => {
                         class="input pl-4 border border-gray-200 rounded dark:border-gray-700"
                     >
                         <input
-                            id="bordered-checkbox-1"
+                            id="isSold"
                             type="checkbox"
                             value=""
-                            name="bordered-checkbox"
+                            name="isSold"
                             :checked="form.sold"
                             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         />
                         <label
-                            for="bordered-checkbox-1"
+                            for="isSold"
                             class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                             >Vendu</label
                         >
@@ -143,4 +175,4 @@ const update = () => {
             </div>
         </form>
     </div>
-</template>
+</template> -->

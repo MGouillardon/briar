@@ -32,8 +32,9 @@
     }
 
     .btn-primary {
-        @apply py-2 px-4 rounded-md bg-blue-500 dark:bg-blue-700 text-white hover:bg-blue-600 dark:hover:bg-blue-800;
+        @apply py-2 px-4 rounded-md bg-blue-500 text-gray-500 dark:bg-blue-700 dark:text-white hover:bg-blue-600 dark:hover:bg-blue-800;
     }
+    
 
     .btn-normal {
         @apply bg-gray-600 hover:bg-gray-500 text-white font-medium p-2 rounded-md;

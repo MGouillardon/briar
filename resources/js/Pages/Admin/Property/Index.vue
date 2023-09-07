@@ -58,8 +58,9 @@ const formatPrice = (price) => {
                     </td>
                     <td class="px-6 py-4">{{ property.city }}</td>
                     <td class="px-6 py-4">
-                        <Link
-                            class="py-2 px-4 rounded-md bg-blue-500 text-gray-500 dark:bg-blue-700 dark:text-white hover:bg-blue-600 dark:hover:bg-blue-800"
+                        <div class="space-x-2">
+                            <Link
+                            class="btn-primary text-sm"
                             :href="
                                 route('admin.property.edit', {
                                     property: property.id,
@@ -67,6 +68,17 @@ const formatPrice = (price) => {
                             "
                             >Edit</Link
                         >
+                        <Link
+                            class="btn-primary text-sm"
+                            :href="
+                                route('admin.property.destroy', {
+                                    property: property.id,
+                                })
+                            "
+                            method="delete"
+                            >Delete</Link
+                        >
+                        </div>
                     </td>
                 </tr>
             </tbody>

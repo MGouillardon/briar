@@ -8,7 +8,6 @@ defineProps({
 });
 </script>
 <template>
-    <div>
         <div class="grid grid-cols-12 gap-4">
             <div
                 v-for="field in formFields"
@@ -61,5 +60,4 @@ defineProps({
                 </button>
             </div>
         </div>
-    </div>
 </template>

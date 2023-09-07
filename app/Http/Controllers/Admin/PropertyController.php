@@ -80,8 +80,10 @@ class PropertyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Property $property)
     {
-        //
+        $property->delete();
+
+        return redirect()->route('admin.property.index')->with('success', 'Property deleted.');
     }
 }

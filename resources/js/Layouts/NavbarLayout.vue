@@ -1,6 +1,8 @@
 <script setup>
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
-import { Link } from "@inertiajs/vue3";
+import { Link, usePage } from "@inertiajs/vue3";
+
+const page = usePage();
 </script>
 
 <template>
@@ -24,14 +26,18 @@ import { Link } from "@inertiajs/vue3";
                             <Link
                                 :href="route('admin.property.index')"
                                 class="text-gray-500 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
-                                >Mes biens</Link
+                                :class="
+                                    page.url === '/admin/property' ? 'opacity-80' : ''
+                                "
+                                >Gérer mes biens</Link
                             >
                         </li>
                         <li>
                             <Link
                                 :href="route('admin.option.index')"
                                 class="text-gray-500 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
-                                >Mes options</Link
+                                :class="page.url === '/admin/option' ? 'opacity-80' : ''"
+                                >Gérer mes options</Link
                             >
                         </li>
                         <li>

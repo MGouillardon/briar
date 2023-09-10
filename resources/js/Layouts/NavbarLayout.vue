@@ -29,6 +29,13 @@ import { Link } from "@inertiajs/vue3";
                         </li>
                         <li>
                             <Link
+                                :href="route('admin.option.index')"
+                                class="text-gray-500 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
+                                >Mes options</Link
+                            >
+                        </li>
+                        <li>
+                            <Link
                                 href="#"
                                 class="text-gray-500 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
                                 >Logout</Link

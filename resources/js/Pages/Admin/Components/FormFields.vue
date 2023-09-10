@@ -3,9 +3,9 @@ import ErrorMessage from "@/Components/ErrorMessage.vue";
 defineProps({
     formFields: Array,
     form: Object,
-    buttonActionName: String,
     isEditForm: Boolean,
 });
+
 </script>
 <template>
         <div class="grid grid-cols-12 gap-4">
@@ -13,7 +13,7 @@ defineProps({
                 v-for="field in formFields"
                 :key="field.name"
                 :class="
-                    field.name === 'description' ? 'col-span-12' : 'col-span-4'
+                    field.name === 'description' || field.name === 'name' ? 'col-span-12' : 'col-span-4'
                 "
             >
                 <label class="label" :for="field.name">{{ field.label }}</label>
@@ -35,7 +35,7 @@ defineProps({
                     :error="form.errors[field.name]"
                 />
             </div>
-            <div v-if="isEditForm" class="col-span-2">
+            <div v-if="isEditForm && !form.name" class="col-span-2">
                 <div
                     class="input pl-4 border border-gray-200 rounded dark:border-gray-700"
                 >

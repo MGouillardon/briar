@@ -1,8 +1,6 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
-import FormFields from "./Components/FormFields.vue";
-import ErrorMessage from "@/Components/ErrorMessage.vue";
-
+import FormFields from "../Components/FormFields.vue";
 
 const props = defineProps({
     property: Object,
@@ -47,9 +45,7 @@ const update = () => {
         <form @submit.prevent="update">
             <FormFields
                 :formFields="formFields"
-                :formData="form"
                 :form="form"
-                :buttonActionName="buttonActionName"
                 :isEditForm="isEditForm"
             />
         </form>

@@ -1,6 +1,6 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
-import FormFields from "./Components/FormFields.vue";
+import FormFields from "../Components/FormFields.vue";
 
 const form = useForm({
     title: null,
@@ -42,7 +42,6 @@ const create = () => {
             <FormFields
                 :formFields="formFields"
                 :form="form"
-                :buttonActionName="buttonActionName"
                 :isEditForm="isEditForm"
             />
         </form>

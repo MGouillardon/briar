@@ -4,6 +4,8 @@ import FormFields from "../Components/FormFields.vue";
 
 const props = defineProps({
     property: Object,
+    options: Object,
+    selectedOptions: Array,
 });
 
 const form = useForm({
@@ -18,6 +20,7 @@ const form = useForm({
     address: props.property.address,
     zip_code: props.property.zip_code,
     sold: Boolean(props.property.sold),
+    options: props.selectedOptions,
 });
 
 const formFields = [
@@ -36,9 +39,8 @@ const formFields = [
 const isEditForm = true;
 
 const update = () => {
-    form.put(route('admin.property.update', {property: props.property.id}))
+    form.put(route("admin.property.update", { property: props.property.id }));
 };
-
 </script>
 <template>
     <div class="pt-12">
@@ -47,6 +49,8 @@ const update = () => {
                 :formFields="formFields"
                 :form="form"
                 :isEditForm="isEditForm"
+                :options="options"
+                :selectedOptions="selectedOptions"
             />
         </form>
     </div>

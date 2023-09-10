@@ -2,6 +2,10 @@
 import { useForm } from "@inertiajs/vue3";
 import FormFields from "../Components/FormFields.vue";
 
+defineProps({
+    options: Object,
+});
+
 const form = useForm({
     title: null,
     description: null,
@@ -14,6 +18,7 @@ const form = useForm({
     address: null,
     zip_code: null,
     sold: false,
+    options: null,
 });
 
 const formFields = [
@@ -43,6 +48,7 @@ const create = () => {
                 :formFields="formFields"
                 :form="form"
                 :isEditForm="isEditForm"
+                :options="options"
             />
         </form>
     </div>

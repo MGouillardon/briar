@@ -61,6 +61,7 @@ const formatPrice = (price) => {
                         <div class="space-x-2">
                             <Link
                             class="btn-primary text-sm"
+                            as="button"
                             :href="
                                 route('admin.property.edit', {
                                     property: property.id,
@@ -70,6 +71,7 @@ const formatPrice = (price) => {
                         >
                         <Link
                             class="btn-primary text-sm"
+                            as="button"
                             :href="
                                 route('admin.property.destroy', {
                                     property: property.id,

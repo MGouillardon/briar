@@ -37,6 +37,7 @@ const formFields = [
     // { name: 'sold', label: 'Vendu', type: 'checkbox' },
 ];
 const isEditForm = true;
+const isPropertyForm = true;
 
 const update = () => {
     form.put(route("admin.property.update", { property: props.property.id }));
@@ -49,6 +50,7 @@ const update = () => {
                 :formFields="formFields"
                 :form="form"
                 :isEditForm="isEditForm"
+                :isPropertyForm="isPropertyForm"
                 :options="options"
                 :selectedOptions="selectedOptions"
             />

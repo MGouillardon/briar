@@ -35,6 +35,7 @@ const formFields = [
     // { name: 'sold', label: 'Vendu', type: 'checkbox' },
 ];
 const isEditForm = false;
+const isPropertyForm = true;
 
 const create = () => {
     form.post(route("admin.property.store"));
@@ -48,6 +49,7 @@ const create = () => {
                 :formFields="formFields"
                 :form="form"
                 :isEditForm="isEditForm"
+                :isPropertyForm="isPropertyForm"
                 :options="options"
             />
         </form>

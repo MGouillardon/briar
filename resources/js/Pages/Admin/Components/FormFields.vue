@@ -4,6 +4,7 @@ defineProps({
     formFields: Array,
     form: Object,
     isEditForm: Boolean,
+    isPropertyForm: Boolean,
     options: Object,
     selectedOptions: Array,
 });
@@ -39,7 +40,7 @@ defineProps({
                 :error="form.errors[field.name]"
             />
         </div>
-        <div class="col-span-2">
+        <div v-if="isPropertyForm" class="col-span-2">
             <label
                 for="options"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"

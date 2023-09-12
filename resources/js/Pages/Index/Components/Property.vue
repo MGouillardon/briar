@@ -16,13 +16,13 @@ const props = defineProps({
 <template>
     <Box>
         <div class="space-y-3">
-            <!-- <Link :href="route('property.show', { property: property.id })"> -->
+            <Link :href="route('property.show', { property: property.id })">
             <PropertyAddress :property="property" class="text-lg" />
             <PropertySpace :property="property" class="text-gray-500" />
             <div class="flex items-center gap-1">
                 <Price :price="property.price" class="text-2xl font-bold" />
             </div>
-            <!-- </Link> -->
+            </Link>
         </div>
     </Box>
 </template>

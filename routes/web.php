@@ -30,6 +30,9 @@ Route::get('/', function () {
 
 Route::get('/', [HomeController::class, 'index']);
 
+Route::get('/properties', [\App\Http\Controllers\PropertyController::class, 'index'])->name('property.index');
+Route::get('/properties/{property}', [\App\Http\Controllers\PropertyController::class, 'show'])->name('property.show');
+
 Route::prefix('admin')->name('admin.')->group( function () {
     Route::resource('property', PropertyController::class)->except(['show']);
     Route::resource('option', OptionController::class)->except(['show']);

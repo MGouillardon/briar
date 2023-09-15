@@ -8,12 +8,19 @@ use Inertia\Inertia;
 
 class PropertyController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $filters = request()->only([
+            'price_from', 'price_to', 'bedrooms', 'rooms', 'floor', 'area_from', 'area_to'
+        ]);
         return Inertia(
             'Property/Index',
             [
-                'properties' => Property::orderBy('created_at', 'desc')->paginate(12),
+                'filters' => $filters,
+                'properties' => Property::orderBy('created_at', 'desc')
+                ->filter($filters)
+                ->paginate(12)
+                ->withQueryString()
             ]
         );
     }

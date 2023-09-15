@@ -15,6 +15,13 @@
         @apply text-sm text-red-500 dark:text-red-400;
     }
 
+    .input-filter {
+        @apply placeholder:text-gray-400 dark:placeholder-gray-600
+        border border-gray-200 dark:border-gray-700
+        text-sm font-medium text-gray-600 dark:text-gray-400
+        dark:bg-gray-800
+    }
+
     .input-filter-l {
         @apply placeholder:text-gray-400 dark:placeholder-gray-600
         border border-gray-200 dark:border-gray-700
@@ -37,7 +44,7 @@
     
 
     .btn-normal {
-        @apply bg-gray-600 hover:bg-gray-500 text-white font-medium p-2 rounded-md;
+        @apply bg-gray-600 hover:bg-gray-500 text-white font-medium p-2 rounded-md text-sm;
     }
 
     .btn-outline {

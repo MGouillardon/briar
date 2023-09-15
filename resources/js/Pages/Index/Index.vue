@@ -1,5 +1,6 @@
 <script setup>
-import Property from "@/Pages/Index/Components/Property.vue";
+import Property from "@/Components/Property.vue";
+import { Link } from "@inertiajs/vue3";
 
 defineProps({
     properties: Object,
@@ -28,5 +29,11 @@ defineProps({
                 :property="property"
             />
         </div>
+    </div>
+    <div class="text-center">
+        <h2 class="py-8 sm:py-12 lg:py-20 text-center text-md md:text-xl lg:text-3xl">Voir tous nos biens</h2>
+        <Link :href="route('property.index')" class="btn-primary">
+            Cliquez ici
+        </Link>
     </div>
 </template>

@@ -17,7 +17,7 @@ class PropertyController extends Controller
             'Property/Index',
             [
                 'filters' => $filters,
-                'properties' => Property::orderBy('created_at', 'desc')
+                'properties' => Property::mostRecent()
                 ->filter($filters)
                 ->paginate(12)
                 ->withQueryString()

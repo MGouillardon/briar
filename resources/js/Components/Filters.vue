@@ -3,7 +3,9 @@ import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
     filters: Object,
+    href: String,
 });
+
 
 const filterForm = useForm({
     price_from: props.filters.price_from ?? null,
@@ -16,7 +18,7 @@ const filterForm = useForm({
 });
 
 const filter = () => {
-    filterForm.get(route("property.index"), {
+    filterForm.get(props.href, {
         preserveState: true,
         preserveScroll: true,
     });
@@ -36,7 +38,7 @@ const reset = () => {
 
 <template>
     <form @submit.prevent="filter">
-        <div class="mb-8 mt-4 flex flex-wrap gap-2">
+        <div class="my-8 flex flex-wrap gap-2">
             <div class="flex flex-nowrap items-center">
                 <input
                     v-model.number="filterForm.price_from"

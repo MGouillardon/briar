@@ -13,12 +13,19 @@ class PropertyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $filters = request()->only([
+            'price_from', 'price_to', 'bedrooms', 'rooms', 'floor', 'area_from', 'area_to'
+        ]);
         return inertia(
             'Admin/Property/Index',
             [
-                'properties' => Property::orderBy('created_at', 'desc')->paginate(10),
+                'filters' => $filters,
+                'properties' => Property::mostRecent()
+                ->filter($filters)
+                ->paginate(10)
+                ->withQueryString()
             ],
 
         );

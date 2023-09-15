@@ -8,7 +8,6 @@ defineProps({
 </script>
 
 <template>
-    {{ properties.data }}
     <div>
         <h1 class="py-8 md:py-12 lg:py-20 text-center text-xl md:text-3xl lg:text-5xl">Agence Immobilière Briar</h1>
         <p class="text-center sm:text-sm md:text-md lg:text-lg lg:px-40">

@@ -12,7 +12,7 @@ defineProps({ links: Array });
             class="py-2 px-4 rounded-md"
             :href="link.url"
             :class="{
-                'bg-blue-500 text-white dark:bg-blue-700 dark:text-blue-300':
+                'bg-indigo-500 text-white dark:bg-indigo-700 dark:text-indigo-300':
                     link.active,
             }"
         >

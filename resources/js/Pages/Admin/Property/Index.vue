@@ -29,7 +29,7 @@ const formatPrice = (price) => {
         class="w-full table-fixed my-4 text-md text-center text-gray-500 dark:text-gray-40 rounded-md overflow-hidden shadow-md"
     >
         <thead
-            class="text-md text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+            class="text-md text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400"
         >
             <tr class="text-xs 2xl:text-sm">
                 <th scope="col" class="px-3 py-3">Titre</th>

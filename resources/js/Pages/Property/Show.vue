@@ -2,12 +2,18 @@
 import { ref } from "vue";
 import PropertyAddress from "@/Components/PropertyAddress.vue";
 import PropertySpace from "@/Components/PropertySpace.vue";
+import PropertyTitle from "@/Components/PropertyTitle.vue";
+import PropertyOptions from "@/Components/PropertyOptions.vue";
 import Price from "@/Components/Price.vue";
 import Box from "@/Components/UI/Box.vue";
 import { useMonthlyPayment } from "@/Composables/useMonthlyPayment";
 
 const props = defineProps({
     property: {
+        type: Object,
+        required: true,
+    },
+    options: {
         type: Object,
         required: true,
     },
@@ -34,8 +40,10 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
             <Box>
                 <template #header> Basic info </template>
                 <Price :price="property.price" class="text-2xl font-bold" />
+                <PropertyTitle :property="property" class="text-lg text-gray-500 font-bold" />
                 <PropertySpace :property="property" class="text-lg" />
                 <PropertyAddress :property="property" class="text-gray-500" />
+                <PropertyOptions :options="options" />
             </Box>
             <Box>
                 <template #header> Monthly payment </template>

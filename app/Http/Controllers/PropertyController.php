@@ -8,7 +8,7 @@ use Inertia\Inertia;
 
 class PropertyController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $filters = request()->only([
             'price_from', 'price_to', 'bedrooms', 'rooms', 'floor', 'area_from', 'area_to'
@@ -18,9 +18,9 @@ class PropertyController extends Controller
             [
                 'filters' => $filters,
                 'properties' => Property::mostRecent()
-                ->filter($filters)
-                ->paginate(12)
-                ->withQueryString()
+                    ->filter($filters)
+                    ->paginate(12)
+                    ->withQueryString()
             ]
         );
     }
@@ -30,7 +30,8 @@ class PropertyController extends Controller
         return Inertia(
             'Property/Show',
             [
-                'property' => $property
+                'property' => $property,
+                'options' => $property->options->pluck('name', 'id')->toArray(),
             ]
         );
     }

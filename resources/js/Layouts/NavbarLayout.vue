@@ -1,8 +1,11 @@
 <script setup>
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import { Link, usePage } from "@inertiajs/vue3";
+import { computed } from "vue";
 
 const page = usePage();
+const user = computed(() => page.props.auth.user);
+const admin = computed(() => page.props.auth.user.is_admin);
 </script>
 
 <template>
@@ -20,8 +23,8 @@ const page = usePage();
                         <span class="">Briar</span>
                     </Link>
                 </div>
-                <div>
-                    <ul class="flex items-center space-x-6">
+                <div class="flex items-center space-x-6">
+                    <ul v-if="user && user.is_admin" class="flex items-center space-x-6">
                         <li>
                             <Link
                                 :href="route('admin.property.index')"
@@ -40,10 +43,22 @@ const page = usePage();
                                 >Gérer mes options</Link
                             >
                         </li>
-                        <li>
+                    </ul>
+                    <ul class="flex items-center space-x-6">
+                        <li v-if="!user">
                             <Link
-                                href="#"
+                                :href="route('login')"
                                 class="text-gray-500 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
+                                method="get"
+                                >Login</Link
+                            >
+                        </li>
+                        <li v-else class="space-x-6">
+                            <span>{{ user.name }}</span>
+                            <Link
+                                :href="route('logout')"
+                                class="text-gray-500 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
+                                method="post"
                                 >Logout</Link
                             >
                         </li>

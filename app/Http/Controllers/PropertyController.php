@@ -8,6 +8,7 @@ use Inertia\Inertia;
 
 class PropertyController extends Controller
 {
+
     public function index()
     {
         $filters = request()->only([

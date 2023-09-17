@@ -43,7 +43,6 @@ const create = () => {
 </script>
 
 <template>
-    {{ route }}
     <div class="pt-12">
         <form @submit.prevent="create">
             <FormFields

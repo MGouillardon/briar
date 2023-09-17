@@ -53,6 +53,14 @@ const admin = computed(() => page.props.auth.user.is_admin);
                                 >Login</Link
                             >
                         </li>
+                        <li v-if="!user">
+                            <Link
+                                :href="route('register')"
+                                class="text-gray-500 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
+                                method="get"
+                                >Register</Link
+                            >
+                        </li>
                         <li v-else class="space-x-6">
                             <span>{{ user.name }}</span>
                             <Link

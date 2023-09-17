@@ -62,6 +62,16 @@ const formatPrice = (price) => {
                             class="btn-primary text-xs 2xl:text-sm"
                             as="button"
                             :href="
+                                route('property.show', {
+                                    property: property.id,
+                                })
+                            "
+                            >Preview</Link
+                        >
+                        <Link
+                            class="btn-primary text-xs 2xl:text-sm"
+                            as="button"
+                            :href="
                                 route('admin.property.edit', {
                                     property: property.id,
                                 })

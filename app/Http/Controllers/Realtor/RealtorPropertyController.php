@@ -25,7 +25,7 @@ class RealtorPropertyController extends Controller
             'Realtor/Index',
             [
                 'filters' => $filters,
-                'property' => Auth::user()
+                'properties' => Auth::user()
                     ->properties()
                     ->filter($filters)
                     ->paginate(5)
@@ -48,7 +48,9 @@ class RealtorPropertyController extends Controller
 
     public function store(PropertyFormRequest $request)
     {
-        $property = Property::create($request->validated());
+        $property = $request->user()->properties()->create(
+            $request->validated()
+        );
         $property->options()->sync($request->validated('options'));
 
 
@@ -94,6 +96,4 @@ class RealtorPropertyController extends Controller
             ->back()
             ->with('success', 'Property restored successfully.');
     }
-
 }
-

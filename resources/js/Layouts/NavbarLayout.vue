@@ -78,6 +78,12 @@ const admin = computed(() => page.props.auth.user.is_admin);
                                 {{ user.name }}
                             </Link>
                             <Link
+                                class="btn-primary"
+                                :href="route('realtor.property.create')"
+                            >
+                                + New listing
+                            </Link>
+                            <Link
                                 :href="route('logout')"
                                 class="text-gray-500 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
                                 method="post"

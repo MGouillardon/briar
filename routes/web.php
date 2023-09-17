@@ -3,10 +3,11 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\Admin\PropertyController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Realtor\RealtorPropertyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,19 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group( fu
     Route::resource('property', PropertyController::class)->except(['show']);
     Route::resource('option', OptionController::class)->except(['show']);
 });
+
+Route::prefix('realtor')
+    ->name('realtor.')
+    ->middleware('auth')
+    ->group(function () {
+        Route::name('property.restore')
+            ->put('property/{property}/restore', [RealtorPropertyController::class, 'restore'])
+            ->withTrashed();
+        Route::resource('property', RealtorPropertyController::class)
+            ->except(['show'])
+            ->withTrashed();
+    });
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

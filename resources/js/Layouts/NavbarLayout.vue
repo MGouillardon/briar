@@ -24,13 +24,18 @@ const admin = computed(() => page.props.auth.user.is_admin);
                     </Link>
                 </div>
                 <div class="flex items-center space-x-6">
-                    <ul v-if="user && admin" class="flex items-center space-x-6">
+                    <ul
+                        v-if="user && admin"
+                        class="flex items-center space-x-6"
+                    >
                         <li>
                             <Link
                                 :href="route('admin.property.index')"
                                 class="text-gray-500 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
                                 :class="
-                                    page.url === '/admin/property' ? 'opacity-80' : ''
+                                    page.url === '/admin/property'
+                                        ? 'opacity-80'
+                                        : ''
                                 "
                                 >Gérer mes biens</Link
                             >
@@ -39,7 +44,11 @@ const admin = computed(() => page.props.auth.user.is_admin);
                             <Link
                                 :href="route('admin.option.index')"
                                 class="text-gray-500 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
-                                :class="page.url === '/admin/option' ? 'opacity-80' : ''"
+                                :class="
+                                    page.url === '/admin/option'
+                                        ? 'opacity-80'
+                                        : ''
+                                "
                                 >Gérer mes options</Link
                             >
                         </li>
@@ -62,7 +71,12 @@ const admin = computed(() => page.props.auth.user.is_admin);
                             >
                         </li>
                         <li v-else class="space-x-6">
-                            <span>{{ user.name }}</span>
+                            <Link
+                                class="text-gray-500 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
+                                :href="route('realtor.property.index')"
+                            >
+                                {{ user.name }}
+                            </Link>
                             <Link
                                 :href="route('logout')"
                                 class="text-gray-500 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"

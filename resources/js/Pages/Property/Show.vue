@@ -100,6 +100,12 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
                     </div>
                 </div>
             </Box>
+            <Box>
+                <template #header> Description </template>
+                <div class="text-gray-500">
+                    {{ property.description }}
+                </div>
+            </Box>
         </div>
     </div>
 </template>

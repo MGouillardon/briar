@@ -1,5 +1,5 @@
 <script setup>
-import Property from "@/Components/Property.vue";
+import Property from "@/Components/Property/Property.vue";
 import Pagination from "@/Components/UI/Pagination.vue";
 import Filters from "@/Components/Filters.vue";
 defineProps({

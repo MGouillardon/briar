@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from "vue";
-import PropertyAddress from "@/Components/PropertyAddress.vue";
-import PropertySpace from "@/Components/PropertySpace.vue";
-import PropertyTitle from "@/Components/PropertyTitle.vue";
-import PropertyOptions from "@/Components/PropertyOptions.vue";
+import PropertyAddress from "@/Components/Property/PropertyAddress.vue";
+import PropertySpace from "@/Components/Property/PropertySpace.vue";
+import PropertyTitle from "@/Components/Property/PropertyTitle.vue";
+import PropertyOptions from "@/Components/Property/PropertyOptions.vue";
 import Price from "@/Components/Price.vue";
 import Box from "@/Components/UI/Box.vue";
 import { useMonthlyPayment } from "@/Composables/useMonthlyPayment";

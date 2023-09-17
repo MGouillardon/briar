@@ -1,8 +1,8 @@
 <script setup>
 import Box from "@/Components/UI/Box.vue";
-import PropertySpace from "@/Components/PropertySpace.vue";
-import PropertyAddress from "@/Components/PropertyAddress.vue";
-import PropertyTitle from "@/Components/PropertyTitle.vue";
+import PropertySpace from "@/Components/Property/PropertySpace.vue";
+import PropertyAddress from "@/Components/Property/PropertyAddress.vue";
+import PropertyTitle from "@/Components/Property/PropertyTitle.vue";
 import Price from "@/Components/Price.vue";
 import { Link } from "@inertiajs/vue3";
 

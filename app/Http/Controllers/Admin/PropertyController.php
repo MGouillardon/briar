@@ -50,7 +50,9 @@ class PropertyController extends Controller
      */
     public function store(PropertyFormRequest $request)
     {
-        $property = Property::create($request->validated());
+        $property = $request->user()->properties()->create(
+            $request->validated()
+        );
         $property->options()->sync($request->validated('options'));
 
         return redirect()->route('admin.property.index')->with('success', 'Property created successfuly.');

@@ -24,7 +24,7 @@ const admin = computed(() => page.props.auth.user.is_admin);
                     </Link>
                 </div>
                 <div class="flex items-center space-x-6">
-                    <ul v-if="user && user.is_admin" class="flex items-center space-x-6">
+                    <ul v-if="user && admin" class="flex items-center space-x-6">
                         <li>
                             <Link
                                 :href="route('admin.property.index')"

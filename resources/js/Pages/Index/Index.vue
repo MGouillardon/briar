@@ -1,5 +1,6 @@
 <script setup>
 import Property from "@/Components/Property/Property.vue";
+import Box from "@/Components/UI/Box.vue";
 import { Link } from "@inertiajs/vue3";
 
 defineProps({
@@ -14,7 +15,13 @@ defineProps({
         >
             Agence Immobilière Briar
         </h1>
-        <p class="text-center sm:text-sm md:text-md lg:text-lg 2xl:px-40">
+        <Box>
+            <template #header>
+                <div class="text-center">
+                    Qui sommes-nous ?
+                </div>
+            </template>
+            <p class="text-center sm:text-sm md:text-md lg:text-lg 2xl:px-40">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
             adipisci rerum minima dolor pariatur veritatis modi exercitationem
             vel repudiandae unde voluptate, at quos nihil voluptatem aliquam
@@ -22,6 +29,7 @@ defineProps({
             in veritatis perferendis velit, blanditiis eligendi ipsum libero
             repellendus rerum consequatur soluta nobis iure atque!
         </p>
+        </Box>
     </div>
     <div>
         <h2

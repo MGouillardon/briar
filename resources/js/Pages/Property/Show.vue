@@ -129,7 +129,7 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
                     </div>
                 </div>
             </Box>
-            <Box>
+            <Box class="flex-grow">
                 <template #header> Description </template>
                 <div class="text-gray-500">
                     {{ property.description }}

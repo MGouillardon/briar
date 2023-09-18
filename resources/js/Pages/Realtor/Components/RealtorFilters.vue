@@ -13,12 +13,6 @@ const filterForm = reactive({
     order: props.filters.order ?? "desc",
 });
 
-onMounted(() => {
-    router.get(route("realtor.property.index"), filterForm, {
-        preserveState: true,
-        preserveScroll: true,
-    });
-});
 
 watch(
     filterForm,

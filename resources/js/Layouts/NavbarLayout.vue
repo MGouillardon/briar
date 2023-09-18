@@ -87,6 +87,7 @@ const admin = computed(() => page.props.auth.user.is_admin);
                                 :href="route('logout')"
                                 class="text-gray-500 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
                                 method="post"
+                                as="button"
                                 >Logout</Link
                             >
                         </li>

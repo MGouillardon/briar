@@ -6,6 +6,7 @@ use App\Models\Property;
 use Illuminate\Http\Request;
 use App\Models\PropertyImage;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Realtor\PropertyImageRequest;
 use Illuminate\Support\Facades\Storage;
 
 class RealtorPropertyImageController extends Controller
@@ -21,9 +22,10 @@ class RealtorPropertyImageController extends Controller
         );
     }
 
-    public function store(Property $property, Request $request)
+    public function store(Property $property, PropertyImageRequest $request)
     {
         if ($request->hasFile('images')) {
+            $request->validated();
             foreach ($request->file('images') as $file) {
                 $path = $file->store('images', 'public');
                 $property->images()->save(
@@ -39,7 +41,7 @@ class RealtorPropertyImageController extends Controller
         return redirect()->back()->with('success', 'Images uploaded successfully');
     }
 
-    public function destroy(PropertyImage $image)
+    public function destroy(Property $property, PropertyImage $image)
     {
         Storage::disk('public')->delete($image->filename);
         $image->delete();

@@ -1,5 +1,6 @@
 <script setup>
 import Box from "@/Components/UI/Box.vue";
+import ErrorMessage from "@/Components/ErrorMessage.vue";
 import { useForm } from "@inertiajs/vue3";
 import { Link } from "@inertiajs/vue3";
 import { computed } from "vue";
@@ -16,6 +17,7 @@ router.on("progress", (event) => {
 const form = useForm({
     images: [],
 });
+const imageErrors = computed(() => Object.values(form.errors));
 
 const canUpload = computed(() => form.images.length > 0);
 
@@ -58,6 +60,13 @@ const reset = () => form.reset();
                     Reset
                 </button>
             </section>
+            <div v-if="imageErrors.length" class="flex flex-col">
+                <ErrorMessage
+                    v-for="error in imageErrors"
+                    :key="error"
+                    :error="error"
+                />
+            </div>
         </form>
     </Box>
     <Box class="mt-4" v-if="property.images.length">

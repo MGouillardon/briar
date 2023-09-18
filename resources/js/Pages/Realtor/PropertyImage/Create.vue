@@ -1,17 +1,18 @@
 <script setup>
 import Box from "@/Components/UI/Box.vue";
 import { useForm } from "@inertiajs/vue3";
+import { Link } from "@inertiajs/vue3";
 import { computed } from "vue";
-import NProgress from 'nprogress'
-import { router } from '@inertiajs/vue3'
+import NProgress from "nprogress";
+import { router } from "@inertiajs/vue3";
 
 const props = defineProps({ property: Object });
 
-router.on('progress', (event) => {
-  if (event.detail.progress.percentage) {
-    NProgress.set((event.detail.progress.percentage / 100) * 0.9)
-  }
-})
+router.on("progress", (event) => {
+    if (event.detail.progress.percentage) {
+        NProgress.set((event.detail.progress.percentage / 100) * 0.9);
+    }
+});
 const form = useForm({
     images: [],
 });
@@ -24,7 +25,6 @@ const upload = () => {
         {
             formData: true,
             onSuccess: () => form.reset(),
-
         }
     );
 };
@@ -62,13 +62,22 @@ const reset = () => form.reset();
     </Box>
     <Box class="mt-4" v-if="property.images.length">
         <template #header> Current property images </template>
-        <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <div v-for="image in props.property.images" :key="image.id">
+        <section
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+        >
+            <div
+                class="flex flex-col justify-between"
+                v-for="image in props.property.images"
+                :key="image.id"
+            >
                 <img
                     :src="image.src"
                     :alt="image.alt"
                     class="w-full h-48 object-cover rounded-md"
                 />
+                <Link class="btn-outline text-sm mt-2" method="delete" as="button" :href="route('realtor.property.image.destroy', {property: props.property.id, image: image.id})">
+                    Remove
+                </Link>
             </div>
         </section>
     </Box>

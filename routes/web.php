@@ -51,7 +51,7 @@ Route::prefix('realtor')
             ->except(['show'])
             ->withTrashed();
         Route::resource('property.image', RealtorPropertyImageController::class)
-            ->only(['create', 'store']);
+            ->only(['create', 'store', 'destroy']);
     });
 
 

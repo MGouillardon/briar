@@ -14,8 +14,17 @@ class PropertyImage extends Model
         'filename'
     ];
 
+    protected $appends = [
+        'src'
+    ];
+
     public function property(): BelongsTo
     {
         return $this->belongsTo(Property::class);
+    }
+
+    public function getSrcAttribute()
+    {
+        return asset("storage/{$this->filename}");
     }
 }

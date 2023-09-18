@@ -2,8 +2,16 @@
 import Box from "@/Components/UI/Box.vue";
 import { useForm } from "@inertiajs/vue3";
 import { computed } from "vue";
+import NProgress from 'nprogress'
+import { router } from '@inertiajs/vue3'
 
 const props = defineProps({ property: Object });
+
+router.on('progress', (event) => {
+  if (event.detail.progress.percentage) {
+    NProgress.set((event.detail.progress.percentage / 100) * 0.9)
+  }
+})
 const form = useForm({
     images: [],
 });
@@ -14,7 +22,9 @@ const upload = () => {
     form.post(
         route("realtor.property.image.store", { property: props.property.id }),
         {
+            formData: true,
             onSuccess: () => form.reset(),
+
         }
     );
 };
@@ -49,5 +59,17 @@ const reset = () => form.reset();
                 </button>
             </section>
         </form>
+    </Box>
+    <Box class="mt-4" v-if="property.images.length">
+        <template #header> Current property images </template>
+        <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div v-for="image in props.property.images" :key="image.id">
+                <img
+                    :src="image.src"
+                    :alt="image.alt"
+                    class="w-full h-48 object-cover rounded-md"
+                />
+            </div>
+        </section>
     </Box>
 </template>

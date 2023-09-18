@@ -11,6 +11,7 @@ class RealtorPropertyImageController extends Controller
 {
     public function create(Property $property)
     {
+        $property->load(['images']);
         return Inertia(
             'Realtor/PropertyImage/Create',
             [

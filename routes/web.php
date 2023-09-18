@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Realtor\RealtorPropertyController;
+use App\Http\Controllers\Realtor\RealtorPropertyImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,8 @@ Route::prefix('realtor')
         Route::resource('property', RealtorPropertyController::class)
             ->except(['show'])
             ->withTrashed();
+        Route::resource('property.image', RealtorPropertyImageController::class)
+            ->only(['create', 'store']);
     });
 
 

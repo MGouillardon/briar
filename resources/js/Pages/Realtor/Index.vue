@@ -40,52 +40,68 @@ defineProps({
                         class="text-gray-500"
                     />
                 </div>
-                <div
-                    class="flex items-center gap-1 text-gray-600 dark:text-gray-300"
-                >
-                    <Link
-                        class="btn-outline text-xs font-medium"
-                        :href="
-                            route('property.show', { property: property.id })
-                        "
-                        >Preview</Link
+                <section>
+                    <div
+                        class="flex items-center gap-1 text-gray-600 dark:text-gray-300"
                     >
-                    <Link
-                        class="btn-outline text-xs font-medium"
-                        :href="
-                            route('realtor.property.edit', {
-                                property: property.id,
-                            })
-                        "
-                        >Edit</Link
-                    >
-                    <Link
-                        v-if="!property.deleted_at"
-                        class="btn-outline text-xs font-medium"
-                        :href="
-                            route('realtor.property.destroy', {
-                                property: property.id,
-                            })
-                        "
-                        as="button"
-                        method="delete"
-                    >
-                        Delete
-                    </Link>
-                    <Link
-                        v-else
-                        class="btn-outline text-xs font-medium"
-                        :href="
-                            route('realtor.property.restore', {
-                                property: property.id,
-                            })
-                        "
-                        as="button"
-                        method="put"
-                    >
-                        Restore
-                    </Link>
-                </div>
+                        <Link
+                            class="btn-outline text-xs font-medium"
+                            :href="
+                                route('property.show', {
+                                    property: property.id,
+                                })
+                            "
+                            >Preview</Link
+                        >
+                        <Link
+                            class="btn-outline text-xs font-medium"
+                            :href="
+                                route('realtor.property.edit', {
+                                    property: property.id,
+                                })
+                            "
+                            >Edit</Link
+                        >
+                        <Link
+                            v-if="!property.deleted_at"
+                            class="btn-outline text-xs font-medium"
+                            :href="
+                                route('realtor.property.destroy', {
+                                    property: property.id,
+                                })
+                            "
+                            as="button"
+                            method="delete"
+                        >
+                            Delete
+                        </Link>
+                        <Link
+                            v-else
+                            class="btn-outline text-xs font-medium"
+                            :href="
+                                route('realtor.property.restore', {
+                                    property: property.id,
+                                })
+                            "
+                            as="button"
+                            method="put"
+                        >
+                            Restore
+                        </Link>
+                    </div>
+                    <div class="mt-2">
+                        <Link
+                            class="block w-full text-center btn-outline text-xs font-medium"
+                            :href="
+                                route('realtor.property.image.create', {
+                                    property: property.id,
+                                })
+                            "
+                        >
+                            Images
+                        </Link>
+                    </div>
+                </section>
             </div>
         </Box>
     </section>

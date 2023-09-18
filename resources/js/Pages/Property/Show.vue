@@ -1,12 +1,17 @@
 <script setup>
 import { ref } from "vue";
+import { useMonthlyPayment } from "@/Composables/useMonthlyPayment";
 import PropertyAddress from "@/Components/Property/PropertyAddress.vue";
 import PropertySpace from "@/Components/Property/PropertySpace.vue";
 import PropertyTitle from "@/Components/Property/PropertyTitle.vue";
 import PropertyOptions from "@/Components/Property/PropertyOptions.vue";
 import Price from "@/Components/Price.vue";
 import Box from "@/Components/UI/Box.vue";
-import { useMonthlyPayment } from "@/Composables/useMonthlyPayment";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Pagination, Navigation, EffectCube } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const props = defineProps({
     property: {
@@ -31,14 +36,27 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
 
 <template>
     <div class="flex flex-col-reverse md:grid md:grid-cols-12 gap-4 pt-20">
-        <Box class="md:col-span-7 flex items-center w-full">
-            <div class="grid grid-cols-2 gap-1" v-if="property.images.length">
-                <img
-                    v-for="image in property.images"
-                    :key="image.id"
-                    :src="image.src"
-                    class="w-full h-full object-cover rounded-md"
-                />
+        <Box
+            class="md:col-span-7 flex w-full"
+            :class="{ 'items-center': !property.images.length }"
+        >
+            <div v-if="property.images.length" class="w-full flex items-center">
+                <Swiper
+                    class="w-full h-full"
+                    :modules="[Pagination, Navigation]"
+                    :pagination="true"
+                    :navigation="true"
+                >
+                    <SwiperSlide
+                        v-for="image in property.images"
+                        :key="image.id"
+                    >
+                        <img
+                            :src="image.src"
+                            class="w-full h-full object-cover rounded-md"
+                        />
+                    </SwiperSlide>
+                </Swiper>
             </div>
             <div v-else class="w-full text-center font-medium text-gray-500">
                 No images
@@ -48,14 +66,17 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
             <Box>
                 <template #header> Basic info </template>
                 <Price :price="property.price" class="text-2xl font-bold" />
-                <PropertyTitle :property="property" class="text-lg text-gray-500 font-bold" />
+                <PropertyTitle
+                    :property="property"
+                    class="text-lg text-gray-500 font-bold"
+                />
                 <PropertySpace :property="property" class="text-lg" />
                 <PropertyAddress :property="property" class="text-gray-500" />
                 <PropertyOptions :options="options" />
             </Box>
             <Box>
                 <template #header> Monthly payment </template>
-                <div>   
+                <div>
                     <label class="label"
                         >Interest rate ({{ interestRate }} %)</label
                     >
@@ -117,3 +138,20 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
         </div>
     </div>
 </template>
+
+<style>
+
+.swiper-pagination-bullet {
+    background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+    width: 12px;
+    height: 12px;
+}
+.swiper-pagination-bullet-active {
+    background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
+.swiper-button-prev:after, .swiper-button-next:after{
+    color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
+</style>

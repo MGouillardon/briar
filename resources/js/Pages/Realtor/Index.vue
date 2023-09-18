@@ -98,7 +98,7 @@ defineProps({
                                 })
                             "
                         >
-                            Images
+                            Images ({{ property.images_count }})
                         </Link>
                     </div>
                 </section>

@@ -28,6 +28,7 @@ class RealtorPropertyController extends Controller
                 'properties' => Auth::user()
                     ->properties()
                     ->filter($filters)
+                    ->withCount('images')
                     ->paginate(5)
                     ->withQueryString()
             ]

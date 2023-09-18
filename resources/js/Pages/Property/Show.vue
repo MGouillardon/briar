@@ -42,7 +42,7 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
         >
             <div v-if="property.images.length" class="w-full flex items-center">
                 <Swiper
-                    class="w-full h-full"
+                    class="w-full h-full rounded-md"
                     :modules="[Pagination, Navigation]"
                     :pagination="true"
                     :navigation="true"

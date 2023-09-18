@@ -28,6 +28,7 @@ class PropertyController extends Controller
 
     public function show(Property $property)
     {
+        $property->load(['images']);
         return Inertia(
             'Property/Show',
             [

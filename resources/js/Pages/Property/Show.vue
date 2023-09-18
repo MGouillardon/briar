@@ -32,7 +32,15 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
 <template>
     <div class="flex flex-col-reverse md:grid md:grid-cols-12 gap-4 pt-20">
         <Box class="md:col-span-7 flex items-center w-full">
-            <div class="w-full text-center font-medium text-gray-500">
+            <div class="grid grid-cols-2 gap-1" v-if="property.images.length">
+                <img
+                    v-for="image in property.images"
+                    :key="image.id"
+                    :src="image.src"
+                    class="w-full h-full object-cover rounded-md"
+                />
+            </div>
+            <div v-else class="w-full text-center font-medium text-gray-500">
                 No images
             </div>
         </Box>

@@ -7,6 +7,7 @@ import PropertyTitle from "@/Components/Property/PropertyTitle.vue";
 import PropertyOptions from "@/Components/Property/PropertyOptions.vue";
 import Price from "@/Components/Price.vue";
 import Box from "@/Components/UI/Box.vue";
+import MakeOffer from '@/Pages/Property/Components/MakeOffer.vue'
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Pagination, Navigation, EffectCube } from "swiper/modules";
 import "swiper/css";
@@ -35,7 +36,7 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
 </script>
 
 <template>
-    <div class="flex flex-col-reverse md:grid md:grid-cols-12 gap-4 pt-20">
+    <div class="flex flex-col-reverse md:grid md:grid-cols-12 gap-4 pt-2 2xl:pt-8">
         <Box
             class="md:col-span-7 flex w-full"
             :class="{ 'items-center': !property.images.length }"
@@ -65,14 +66,20 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
         <div class="md:col-span-5 flex flex-col gap-4">
             <Box>
                 <template #header> Basic info </template>
-                <Price :price="property.price" class="text-2xl font-bold" />
+                <Price :price="property.price" class="text-xl 2xl:text-3xl font-bold" />
                 <PropertyTitle
                     :property="property"
                     class="text-lg text-gray-500 font-bold"
                 />
-                <PropertySpace :property="property" class="text-lg" />
+                <PropertySpace :property="property" class="text-md 2xl:text-lg" />
                 <PropertyAddress :property="property" class="text-gray-500" />
                 <PropertyOptions :options="options" />
+            </Box>
+            <Box>
+                <template #header> Description </template>
+                <div class="text-gray-500">
+                    {{ property.description }}
+                </div>
             </Box>
             <Box>
                 <template #header> Monthly payment </template>
@@ -99,9 +106,9 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
                     />
                     <div class="text-gray-600 dark:text-gray-300 mt-2">
                         <div class="text-gray-400">Your monthly payment</div>
-                        <Price class="text-3xl" :price="monthlyPayment" />
+                        <Price class="text-xl 2xl:text-3xl" :price="monthlyPayment" />
                     </div>
-                    <div class="mt-2 text-gray-500">
+                    <div class="mt-2 text-gray-500 lg:text-sm text-md">
                         <div class="flex justify-between">
                             <div>Total Paid</div>
                             <div>
@@ -129,12 +136,7 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
                     </div>
                 </div>
             </Box>
-            <Box class="flex-grow">
-                <template #header> Description </template>
-                <div class="text-gray-500">
-                    {{ property.description }}
-                </div>
-            </Box>
+            <MakeOffer :property-id="property.id" :price="property.price" />
         </div>
     </div>
 </template>

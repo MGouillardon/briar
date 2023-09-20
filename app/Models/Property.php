@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Offer;
 use App\Models\Option;
 use App\Models\PropertyImage;
 use Illuminate\Database\Eloquent\Model;
@@ -49,6 +50,11 @@ class Property extends Model
     public function images(): HasMany
     {
         return $this->hasMany(PropertyImage::class);
+    }
+
+    public function offers(): HasMany
+    {
+        return $this->hasMany(Offer::class, 'property_id');
     }
 
     public function scopeMostRecent(Builder $query): Builder

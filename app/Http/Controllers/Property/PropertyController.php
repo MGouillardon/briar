@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Property;
 
-use App\Models\Property;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Property;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PropertyController extends Controller
 {
@@ -30,10 +31,12 @@ class PropertyController extends Controller
     public function show(Property $property)
     {
         $property->load(['images']);
+        $offer = !Auth::user() ? null : $property->offers()->CurrentUser()->first();
         return Inertia(
             'Property/Show',
             [
                 'property' => $property,
+                'offerMade' => $offer,
                 'options' => $property->options->pluck('name', 'id')->toArray(),
             ]
         );

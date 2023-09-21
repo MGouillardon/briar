@@ -9,6 +9,7 @@ import PropertyOptions from "@/Components/Property/PropertyOptions.vue";
 import Price from "@/Components/Price.vue";
 import Box from "@/Components/UI/Box.vue";
 import MakeOffer from "@/Pages/Property/Components/MakeOffer.vue";
+import OfferMade from "@/Pages/Property/Components/OfferMade.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Pagination, Navigation, EffectCube } from "swiper/modules";
 import "swiper/css";
@@ -27,6 +28,10 @@ const props = defineProps({
     options: {
         type: Object,
         required: true,
+    },
+    offerMade: {
+        type: Object,
+        default: null,
     },
 });
 
@@ -155,11 +160,12 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
                 </div>
             </Box>
             <MakeOffer
-                v-if="user"
+                v-if="user && !offerMade"
                 @offer-updated="offer = $event"
                 :property-id="property.id"
                 :price="property.price"
             />
+            <OfferMade v-if="user && offerMade" :offer="offerMade" />
         </div>
     </div>
 </template>

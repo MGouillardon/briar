@@ -30,11 +30,13 @@ const props = defineProps({
     },
 });
 
+const offer = ref(props.property.price);
+
 const interestRate = ref(2.5);
 const duration = ref(25);
 
 const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
-    props.property.price,
+    offer,
     interestRate,
     duration
 );
@@ -154,6 +156,7 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
             </Box>
             <MakeOffer
                 v-if="user"
+                @offer-updated="offer = $event"
                 :property-id="property.id"
                 :price="property.price"
             />

@@ -32,8 +32,10 @@ Route::get('/', function () {
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/properties', [\App\Http\Controllers\PropertyController::class, 'index'])->name('property.index');
-Route::get('/properties/{property}', [\App\Http\Controllers\PropertyController::class, 'show'])->name('property.show');
+Route::get('/properties', [\App\Http\Controllers\Property\PropertyController::class, 'index'])->name('property.index');
+Route::get('/properties/{property}', [\App\Http\Controllers\Property\PropertyController::class, 'show'])->name('property.show');
+
+Route::resource('property.offer', \App\Http\Controllers\Property\PropertyOfferController::class)->middleware('auth')->only(['store']);
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group( function () {
     Route::resource('property', PropertyController::class)->except(['show']);

@@ -1,6 +1,7 @@
 <script setup>
 import { Head, Link, useForm } from "@inertiajs/vue3";
 import ErrorMessage from "@/Components/ErrorMessage.vue";
+import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 
 const form = useForm({
     name: "",
@@ -21,6 +22,7 @@ const submit = () => {
 
     <form @submit.prevent="submit">
         <div class="w-1/2 mx-auto mt-24">
+            <ApplicationLogo class="w-20 h-20 mb-4 mx-auto text-gray-500 dark:text-white fill-current" />
             <div>
                 <label for="name" value="Name" class="label">Name</label>
 

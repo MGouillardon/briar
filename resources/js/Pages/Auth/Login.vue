@@ -2,6 +2,7 @@
 import Checkbox from "@/Components/Checkbox.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 import ErrorMessage from "@/Components/ErrorMessage.vue";
+import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 
 defineProps({
     canResetPassword: {
@@ -31,9 +32,9 @@ const submit = () => {
     <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
         {{ status }}
     </div>
-
     <form @submit.prevent="submit">
         <div class="w-1/2 mx-auto mt-24">
+            <ApplicationLogo class="w-20 h-20 mb-4 mx-auto text-gray-500 dark:text-white fill-current" />
             <div>
                 <label class="label" for="email" value="Email">Email</label>
 

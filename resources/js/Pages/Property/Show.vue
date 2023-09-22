@@ -35,6 +35,8 @@ const props = defineProps({
     },
 });
 
+const owner = computed(() => props.property.user_id === user.value?.id);
+
 const offer = ref(props.property.price);
 
 const interestRate = ref(2.5);
@@ -160,12 +162,12 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
                 </div>
             </Box>
             <MakeOffer
-                v-if="user && !offerMade"
+                v-if="user && !offerMade && !owner"
                 @offer-updated="offer = $event"
                 :property-id="property.id"
                 :price="property.price"
-            />
-            <OfferMade v-if="user && offerMade" :offer="offerMade" />
+                />
+                <OfferMade v-if="user && offerMade" :offer="offerMade" />
         </div>
     </div>
 </template>

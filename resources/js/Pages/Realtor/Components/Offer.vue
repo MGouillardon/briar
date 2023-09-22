@@ -7,6 +7,7 @@ import { computed } from "vue";
 const props = defineProps({
     offer: Object,
     propertyPrice: Number,
+    isSold: Number,
 });
 
 const difference = computed(() => props.offer.amount - props.propertyPrice);
@@ -39,7 +40,7 @@ const madeOn = computed(() => {
             </div>
             <div>
                 <Link
-                    v-if="!offer.accepted_at && !offer.rejected_at" 
+                    v-if="!isSold" 
                     class="btn-outline text-xs font-medium"
                     as="button"
                     method="put"

@@ -10,13 +10,17 @@ class RealtorPropertyAcceptOfferController extends Controller
 {
     public function __invoke(Offer $offer)
     {
+        $property = $offer->property;
+        $this->authorize('update', $property);
         $offer->update([
             'accepted_at' => now(),
         ]);
-        $offer->property->offers()->except($offer)->update([
+        $property->offers()->except($offer)->update([
             'rejected_at' => now(),
         ]);
-
+        $property->update([
+            'sold' => true,
+        ]);
         return redirect()->back()->with('success', "Offer #{$offer->id} accepted!, other offers rejected.");
     }
 }

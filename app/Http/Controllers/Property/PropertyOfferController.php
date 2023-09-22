@@ -12,6 +12,7 @@ class PropertyOfferController extends Controller
 {
     public function store(Property $property, PropertyOfferRequest $request)
     {
+        $this->authorize('view', $property);
         $property->offers()->save(
             Offer::make(
                 $request->validated()

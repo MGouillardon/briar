@@ -11,6 +11,10 @@ use App\Http\Requests\Admin\PropertyFormRequest;
 
 class RealtorPropertyController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Property::class, 'property');
+    }
 
     public function index(Request $request)
     {

@@ -10,6 +10,10 @@ use App\Http\Requests\Admin\PropertyFormRequest;
 
 class PropertyController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Property::class, 'property');
+    }
     /**
      * Display a listing of the resource.
      */

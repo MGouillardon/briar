@@ -29,6 +29,7 @@ const hasOffers = computed(() => props.property.offers.length);
                 v-for="offer in property.offers"
                 :offer="offer"
                 :property-price="property.price"
+                :is-sold="property.sold"
                 :key="offer.id"
             />
         </div>

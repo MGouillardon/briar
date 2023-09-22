@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Property;
 
-use Inertia\Inertia;
 use App\Models\Property;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class PropertyController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Property::class, 'property');
+    }
 
     public function index()
     {
@@ -22,6 +25,7 @@ class PropertyController extends Controller
                 'filters' => $filters,
                 'properties' => Property::mostRecent()
                     ->filter($filters)
+                    ->withoutSold()
                     ->paginate(12)
                     ->withQueryString()
             ]

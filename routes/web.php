@@ -42,7 +42,6 @@ Route::prefix('realtor')
             ->put('property/{property}/restore', [RealtorPropertyController::class, 'restore'])
             ->withTrashed();
         Route::resource('property', RealtorPropertyController::class)
-            ->except(['show'])
             ->withTrashed();
         Route::resource('property.image', RealtorPropertyImageController::class)
             ->only(['create', 'store', 'destroy']);

@@ -29,8 +29,19 @@ class RealtorPropertyController extends Controller
                     ->properties()
                     ->filter($filters)
                     ->withCount('images')
+                    ->withCount('offers')
                     ->paginate(5)
                     ->withQueryString()
+            ]
+        );
+    }
+
+    public function show(Property $property)
+    {
+        return inertia(
+            'Realtor/Show',
+            [
+                'property' => $property->load('offers'),
             ]
         );
     }

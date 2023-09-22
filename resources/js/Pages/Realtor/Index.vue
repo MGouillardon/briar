@@ -101,6 +101,18 @@ defineProps({
                             Images ({{ property.images_count }})
                         </Link>
                     </div>
+                    <div class="mt-2">
+                        <Link
+                            class="block w-full text-center btn-outline text-xs font-medium"
+                            :href="
+                                route('realtor.property.show', {
+                                    property: property.id,
+                                })
+                            "
+                        >
+                            Offers ({{ property.offers_count }})
+                        </Link>
+                    </div>
                 </section>
             </div>
         </Box>

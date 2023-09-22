@@ -64,7 +64,7 @@ class PropertyPolicy
      */
     public function update(User $user, Property $property)
     {
-        return $property->sold === false
+        return $property->sold === 0
             && ($user->id === $property->user_id);
     }
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Realtor\RealtorPropertyController;
 use App\Http\Controllers\Realtor\RealtorPropertyImageController;
+use App\Http\Controllers\Realtor\RealtorPropertyAcceptOfferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ Route::get('/properties/{property}', [\App\Http\Controllers\Property\PropertyCon
 
 Route::resource('property.offer', \App\Http\Controllers\Property\PropertyOfferController::class)->middleware('auth')->only(['store']);
 
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group( function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('property', PropertyController::class)->except(['show']);
     Route::resource('option', OptionController::class)->except(['show']);
 });
@@ -43,6 +44,9 @@ Route::prefix('realtor')
             ->withTrashed();
         Route::resource('property', RealtorPropertyController::class)
             ->withTrashed();
+
+        Route::name('offer.accept')
+            ->put('offer/{offer}/accept', RealtorPropertyAcceptOfferController::class);
         Route::resource('property.image', RealtorPropertyImageController::class)
             ->only(['create', 'store', 'destroy']);
     });
@@ -58,4 +62,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

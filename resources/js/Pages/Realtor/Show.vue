@@ -24,22 +24,22 @@ const hasOffers = computed(() => props.property.offers.length);
             </div>
         </Box>
 
-        <div v-else class="md:col-span-7 items-center">
+        <div v-else class="md:col-span-7 flex flex-col gap-4">
             <Offer
-                class="mb-4"
                 v-for="offer in property.offers"
                 :offer="offer"
                 :property-price="property.price"
                 :key="offer.id"
             />
         </div>
+        <div class="md:col-span-5">
+            <Box>
+                <template #header>Basic Info</template>
+                <Price :price="property.price" class="text-2xl font-bold" />
 
-        <Box class="md:col-span-5">
-            <template #header>Basic Info</template>
-            <Price :price="property.price" class="text-2xl font-bold" />
-
-            <PropertySpace :property="property" class="text-lg" />
-            <PropertyAddress :property="property" class="text-gray-500" />
-        </Box>
+                <PropertySpace :property="property" class="text-lg" />
+                <PropertyAddress :property="property" class="text-gray-500" />
+            </Box>
+        </div>
     </section>
 </template>

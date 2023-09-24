@@ -15,6 +15,7 @@ import { Pagination, Navigation, EffectCube } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import EmptyState from "@/Components/UI/EmptyState.vue";
 
 const page = usePage();
 
@@ -56,8 +57,9 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
         <Box
             class="md:col-span-7 flex w-full"
             :class="{ 'items-center': !property.images.length }"
+            v-if="property.images.length"
         >
-            <div v-if="property.images.length" class="w-full flex items-center">
+            <div class="w-full flex items-center">
                 <Swiper
                     class="w-full h-full rounded-md"
                     :modules="[Pagination, Navigation]"
@@ -75,10 +77,10 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
                     </SwiperSlide>
                 </Swiper>
             </div>
-            <div v-else class="w-full text-center font-medium text-gray-500">
-                No images
-            </div>
         </Box>
+        <EmptyState v-else class="md:col-span-7 flex items-center">
+            No images
+        </EmptyState>
         <div class="md:col-span-5 flex flex-col gap-4">
             <Box>
                 <template #header> Basic info </template>

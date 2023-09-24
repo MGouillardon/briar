@@ -6,6 +6,7 @@ import PropertySpace from "@/Components/Property/PropertySpace.vue";
 import PropertyAddress from "@/Components/Property/PropertyAddress.vue";
 import RealtorFilters from "@/Pages/Realtor/Components/RealtorFilters.vue";
 import Pagination from "@/Components/UI/Pagination.vue";
+import EmptyState from "@/Components/UI/EmptyState.vue";
 
 defineProps({
     properties: Object,
@@ -18,7 +19,10 @@ defineProps({
     <section class="mb-4">
         <RealtorFilters :filters="filters" />
     </section>
-    <section class="grid grid-cols-1 lg:grid-cols-2 gap-2">
+    <section
+        class="grid grid-cols-1 lg:grid-cols-2 gap-2"
+        v-if="properties.data.length"
+    >
         <Box
             v-for="property in properties.data"
             :key="property.id"
@@ -28,8 +32,10 @@ defineProps({
                 class="flex flex-col md:flex-row gap-2 md:items-center justify-between"
             >
                 <div :class="{ 'opacity-25': property.deleted_at }">
-                    <div v-if="property.sold"
-                    class="text-xs font-bold uppercase border border-dashed p-1 border-green-300 text-green-500 dark:border-green-600 dark:text-green-600 inline-block rounded-md mb-2">
+                    <div
+                        v-if="property.sold"
+                        class="text-xs font-bold uppercase border border-dashed p-1 border-green-300 text-green-500 dark:border-green-600 dark:text-green-600 inline-block rounded-md mb-2"
+                    >
                         sold
                     </div>
                     <div class="xl:flex items-center gap-2">
@@ -121,6 +127,9 @@ defineProps({
             </div>
         </Box>
     </section>
+    <EmptyState v-else class="mt-12">
+        You have no properties.
+    </EmptyState>
     <section
         v-if="properties.data.length"
         class="w-full flex justify-center mt-4 mb-4"

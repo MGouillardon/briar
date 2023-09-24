@@ -51,6 +51,7 @@ Route::prefix('realtor')
             ->only(['create', 'store', 'destroy']);
     });
 
+Route::resource('notification', \App\Http\Controllers\Notification\NotificationController::class)->middleware('auth')->only(['index']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

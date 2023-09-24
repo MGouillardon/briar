@@ -7,7 +7,9 @@ import { computed } from "vue";
 const page = usePage();
 const user = computed(() => page.props.auth.user);
 const admin = computed(() => page.props.auth.user.is_admin);
-const notificationsCount = computed(() => Math.min(page.props.auth.notificationCount, 9));
+const notificationsCount = computed(() =>
+    Math.min(page.props.auth.notificationCount, 9)
+);
 </script>
 
 <template>
@@ -73,14 +75,23 @@ const notificationsCount = computed(() => Math.min(page.props.auth.notificationC
                             >
                         </li>
                         <li v-else class="flex items-center space-x-6">
-                            <div class="relative pr-2 py-2">
+                            <Link
+                                :href="route('notification.index')"
+                                class="relative pr-2 py-2"
+                            >
                                 <NotificationIcon />
-                                <div  v-if="notificationsCount" class="absolute top-0 right-0 w-5 h-5 bg-red-500 dark:bg-red-400 text-white font-medium border border-white dark:border-gray-900 rounded-full text-xs text-center">
-                                    <span>
+                                <div
+                                    v-if="notificationsCount"
+                                    class="absolute top-0 right-0 w-5 h-5 bg-red-500 dark:bg-red-400 text-white font-medium border border-white dark:border-gray-900 rounded-full text-xs text-center"
+                                >
+                                    <span v-if="notificationsCount > 9">
+                                        9+
+                                    </span>
+                                    <span v-else>
                                         {{ notificationsCount }}
                                     </span>
                                 </div>
-                            </div>
+                            </Link>
                             <Link
                                 class="text-gray-500 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
                                 :href="route('realtor.property.index')"

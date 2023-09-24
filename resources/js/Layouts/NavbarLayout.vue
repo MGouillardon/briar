@@ -7,9 +7,7 @@ import { computed } from "vue";
 const page = usePage();
 const user = computed(() => page.props.auth.user);
 const admin = computed(() => page.props.auth.user.is_admin);
-const notificationsCount = computed(() =>
-    Math.min(page.props.auth.notificationCount, 9)
-);
+const notificationsCount = computed(() => page.props.auth.notificationCount);
 </script>
 
 <template>

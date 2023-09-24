@@ -52,6 +52,7 @@ Route::prefix('realtor')
     });
 
 Route::resource('notification', \App\Http\Controllers\Notification\NotificationController::class)->middleware('auth')->only(['index']);
+Route::put('notification/{notification}/mark-as-read', \App\Http\Controllers\Notification\MarkAsReadNotificationController::class)->middleware('auth')->name('notification.mark-as-read');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

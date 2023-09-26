@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, watch, computed, onMounted } from "vue";
+import { reactive, watch, computed } from "vue";
 import { router } from "@inertiajs/vue3";
 import { debounce } from "lodash";
 
@@ -10,7 +10,7 @@ const props = defineProps({
 const filterForm = reactive({
     deleted: props.filters.deleted ?? false,
     by: props.filters.by ?? "created_at",
-    order: props.filters.order ?? "desc",
+    order: props.filters.order ?? "asc",
 });
 
 
@@ -26,8 +26,8 @@ watch(
 
 const sortLabels = {
     created_at: [
-        { label: "Latest", value: "desc" },
         { label: "Oldest", value: "asc" },
+        { label: "Latest", value: "desc" },
     ],
     price: [
         { label: "Highest", value: "desc" },

@@ -1,17 +1,18 @@
 <script setup>
-defineProps({
+const props = defineProps({
     options: {
         type: Object,
         required: true,
     },
 });
+const optionKeys = Object.keys(props.options);
 </script>
 
 <template>
     <div>
-        <span v-for="(option, index) in options" :key="option.id">
-            {{ option }}
-            <span v-if="index != Object.keys(option).length - 1">• </span>
+        <span v-for="(key, index) in optionKeys" :key="key">
+            {{ options[key] }}
+            <span v-if="index < optionKeys.length - 1">• </span>
         </span>
     </div>
 </template>

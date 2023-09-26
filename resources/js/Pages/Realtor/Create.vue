@@ -1,5 +1,5 @@
 <script setup>
-import CreateForm from "@/Components/CreateForm.vue";
+import CreateForm from "@/Components/Forms/CreateForm.vue";
 
 const props = defineProps({
     options: Object,

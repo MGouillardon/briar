@@ -1,6 +1,6 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
-import FormFields from "@/Components/FormFields.vue";
+import FormFields from "@/Components/Forms/FormFields.vue";
 
 
 const props = defineProps({

@@ -1,5 +1,5 @@
 <script setup>
-import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+import ApplicationLogo from "@/Components/Icons/ApplicationLogo.vue";
 import NotificationIcon from "@/Components/Icons/NotificationIcon.vue";
 import { Link, usePage } from "@inertiajs/vue3";
 import { computed } from "vue";

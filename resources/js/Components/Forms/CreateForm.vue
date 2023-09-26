@@ -1,27 +1,25 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
-import FormFields from "@/Components/FormFields.vue";
+import FormFields from "@/Components/Forms/FormFields.vue";
 
 const props = defineProps({
-    property: Object,
     options: Object,
-    selectedOptions: Array,
     route: String,
 });
 
 const form = useForm({
-    title: props.property.title,
-    description: props.property.description,
-    area: props.property.area,
-    price: props.property.price,
-    rooms: props.property.rooms,
-    bedrooms: props.property.bedrooms,
-    floor: props.property.floor,
-    city: props.property.city,
-    address: props.property.address,
-    zip_code: props.property.zip_code,
-    sold: Boolean(props.property.sold),
-    options: props.selectedOptions,
+    title: null,
+    description: null,
+    area: 0,
+    price: 0,
+    rooms: 0,
+    bedrooms: 0,
+    floor: 0,
+    city: null,
+    address: null,
+    zip_code: null,
+    sold: false,
+    options: null,
 });
 
 const formFields = [
@@ -36,23 +34,23 @@ const formFields = [
     { name: "address", label: "Adresse", type: "text" },
     { name: "zip_code", label: "Code postal", type: "text" },
 ];
-const isEditForm = true;
+const isEditForm = false;
 const isPropertyForm = true;
 
-const update = () => {
-    form.put(props.route);
+const create = () => {
+    form.post(props.route);
 };
 </script>
+
 <template>
     <div class="pt-12">
-        <form @submit.prevent="update">
+        <form @submit.prevent="create">
             <FormFields
                 :formFields="formFields"
                 :form="form"
                 :isEditForm="isEditForm"
                 :isPropertyForm="isPropertyForm"
                 :options="options"
-                :selectedOptions="selectedOptions"
             />
         </form>
     </div>

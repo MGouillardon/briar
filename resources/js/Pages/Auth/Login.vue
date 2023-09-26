@@ -1,8 +1,8 @@
 <script setup>
-import Checkbox from "@/Components/Checkbox.vue";
+import Checkbox from "@/Components/Forms/Checkbox.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 import ErrorMessage from "@/Components/ErrorMessage.vue";
-import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+import ApplicationLogo from "@/Components/Icons/ApplicationLogo.vue";
 
 defineProps({
     canResetPassword: {

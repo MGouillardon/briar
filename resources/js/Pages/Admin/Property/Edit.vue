@@ -1,5 +1,5 @@
 <script setup>
-import EditForm from "@/Components/EditForm.vue";
+import EditForm from "@/Components/Forms/EditForm.vue";
 
 const props = defineProps({
     property: Object,

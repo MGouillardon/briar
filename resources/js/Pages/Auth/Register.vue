@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link, useForm } from "@inertiajs/vue3";
 import ErrorMessage from "@/Components/ErrorMessage.vue";
-import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+import ApplicationLogo from "@/Components/Icons/ApplicationLogo.vue";
 
 const form = useForm({
     name: "",

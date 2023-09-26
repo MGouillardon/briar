@@ -7,6 +7,7 @@ import PropertyAddress from "@/Components/Property/PropertyAddress.vue";
 import RealtorFilters from "@/Pages/Realtor/Components/RealtorFilters.vue";
 import Pagination from "@/Components/UI/Pagination.vue";
 import EmptyState from "@/Components/UI/EmptyState.vue";
+import PropertyTitle from "@/Components/Property/PropertyTitle.vue";
 
 defineProps({
     properties: Object,
@@ -38,6 +39,10 @@ defineProps({
                     >
                         sold
                     </div>
+                    <PropertyTitle
+                        :property="property"
+                        class="text-lg text-gray-500 font-bold"
+                    />
                     <div class="xl:flex items-center gap-2">
                         <Price
                             :price="property.price"
@@ -127,9 +132,7 @@ defineProps({
             </div>
         </Box>
     </section>
-    <EmptyState v-else class="mt-12">
-        You have no properties.
-    </EmptyState>
+    <EmptyState v-else class="mt-12"> You have no properties. </EmptyState>
     <section
         v-if="properties.data.length"
         class="w-full flex justify-center mt-4 mb-4"

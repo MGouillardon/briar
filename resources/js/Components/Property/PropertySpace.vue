@@ -11,7 +11,7 @@ defineProps({
     <div>
         <span class="font-bold">{{ property.bedrooms }}</span> beds
         <span class="text-gray-400 mx-2">|</span>
-        <span class="font-bold">{{ property.rooms }}</span> baths
+        <span class="font-bold">{{ property.rooms }}</span> rooms
         <span class="text-gray-400 mx-2">|</span>
         <span class="font-bold">{{ property.floor }}</span> floor
         <span class="text-gray-400 mx-2">|</span>

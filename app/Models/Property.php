@@ -104,6 +104,10 @@ class Property extends Model
                 fn ($query, $area_to) => $query->where('area', '<=', $area_to)
             )
             ->when(
+                $filters['search'] ?? false,
+                fn ($query, $search) => $query->where('title', 'like', '%' . $search . '%')
+            )
+            ->when(
                 $filters['deleted'] ?? false,
                 fn ($query, $deleted) => $query->withTrashed()
             )

@@ -17,7 +17,7 @@ class PropertyController extends Controller
     public function index()
     {
         $filters = request()->only([
-            'price_from', 'price_to', 'bedrooms', 'rooms', 'floor', 'area_from', 'area_to'
+            'price_from', 'price_to', 'bedrooms', 'rooms', 'floor', 'area_from', 'area_to', 'search'
         ]);
         return Inertia(
             'Property/Index',

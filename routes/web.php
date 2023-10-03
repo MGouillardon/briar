@@ -1,9 +1,15 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\OptionController;
+use App\Http\Controllers\Admin\PropertyController;
+use App\Http\Controllers\Realtor\RealtorPropertyController;
+use App\Http\Controllers\Realtor\RealtorPropertyImageController;
+use App\Http\Controllers\Realtor\RealtorPropertyAcceptOfferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +22,37 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/properties', [\App\Http\Controllers\Property\PropertyController::class, 'index'])->name('property.index');
+Route::get('/properties/{property}', [\App\Http\Controllers\Property\PropertyController::class, 'show'])->name('property.show');
+
+Route::resource('property.offer', \App\Http\Controllers\Property\PropertyOfferController::class)->middleware('auth')->only(['store']);
+
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+    Route::resource('property', PropertyController::class)->except(['show']);
+    Route::resource('option', OptionController::class)->except(['show']);
 });
 
+Route::prefix('realtor')
+    ->name('realtor.')
+    ->middleware('auth')
+    ->group(function () {
+        Route::name('property.restore')
+            ->put('property/{property}/restore', [RealtorPropertyController::class, 'restore'])
+            ->withTrashed();
+        Route::resource('property', RealtorPropertyController::class)
+            ->withTrashed();
+
+        Route::name('offer.accept')
+            ->put('offer/{offer}/accept', RealtorPropertyAcceptOfferController::class);
+        Route::resource('property.image', RealtorPropertyImageController::class)
+            ->only(['create', 'store', 'destroy']);
+    });
+
+Route::resource('notification', \App\Http\Controllers\Notification\NotificationController::class)->middleware('auth')->only(['index']);
+Route::put('notification/{notification}/mark-as-read', \App\Http\Controllers\Notification\MarkAsReadNotificationController::class)->middleware('auth')->name('notification.mark-as-read');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -36,4 +64,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
